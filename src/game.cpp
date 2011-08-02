@@ -6,6 +6,10 @@
 #include "magic.hpp"
 
 std::vector<Object*> Game::mObjects;
+std::vector<Player*> Game::mPlayers;
+std::vector<Magic*> Game::mMagics;
+
+
 int Game::mWidth	= 320;
 int Game::mHeight	= 240;
 

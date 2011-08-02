@@ -2,6 +2,8 @@
 #define _GAME_
 #include "include.hpp"
 #include "object.hpp"
+#include "player.hpp"
+#include "magic.hpp"
 
 class Game
 {
