@@ -5,10 +5,9 @@
 #include "input.hpp"
 #include "magic.hpp"
 
-std::vector<Object*> Game::mObjects;
-std::vector<Player*> Game::mPlayers;
-std::vector<Magic*> Game::mMagics;
-
+std::vector<Object*>	Game::mObjects;
+std::vector<Player*>	Game::mPlayers;
+std::vector<Magic*>		Game::mMagics;
 
 int Game::mWidth	= 320;
 int Game::mHeight	= 240;
@@ -86,12 +85,8 @@ bool Game::stateQuit()
 
 bool Game::stateDisclaimer()
 {
-	//Object b ( Point( 150, 230 ), "data/obj/enemy/wizard/wizard.lua" );
-
 	addObject( new Player ( Point( 0, 230 ) ) );
 	Magic *a = new Magic(Point( 0, 230 ) , 1, Magic::FIRE);
-	//addObject( new Magic(Point( 0, 230 ) , 1, Magic::FIRE) );
-	//;
 	al_set_target_backbuffer( mDisplay );
 
 	double x = 0;

@@ -9,7 +9,8 @@ class Magic : public Object
 		{
 			FIRE,
 			ICE,
-			ROCK
+			ROCK,
+			MAGIC_NUMBER
 		};
 		Magic(const Point& pPosition, const int& pDir, const Magic::Type& pType);
 		void stateCreate();

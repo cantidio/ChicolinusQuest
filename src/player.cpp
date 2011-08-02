@@ -180,13 +180,14 @@ void Player::stateSpecialShotting()
                 mCanShot = false;
                 printf("shot\n");
                 double y = sin(mFrameOn)* 5;
+                int magic = rand()%Magic::MAGIC_NUMBER;
                 if(mDirection == 0)
                 {
-                    Game::addMagic( new Magic(Point( mPosition.x + 30, mPosition.y + 15 + y ) , 1, Magic::FIRE) );
+                    Game::addMagic( new Magic(Point( mPosition.x + 30, mPosition.y + 15 + y ) , 1, (Magic::Type) magic) );
                 }
                 else
                 {
-                    Game::addMagic( new Magic(Point( mPosition.x - 30, mPosition.y + 15 + y ) , 0, Magic::FIRE) );
+                    Game::addMagic( new Magic(Point( mPosition.x - 30, mPosition.y + 15 + y ) , 0, (Magic::Type) magic) );
                 }
             }
 	    }

@@ -418,7 +418,7 @@
 1311873771 source:c:\users\cantidio\dropbox\workspace\wizard\src\collision_box.cpp
 	"collision_box.hpp"
 
-1312249668 source:c:\users\cantidio\dropbox\workspace\wizard\src\game.cpp
+1312257037 source:c:\users\cantidio\dropbox\workspace\wizard\src\game.cpp
 	"game.hpp"
 	"bg_layer.hpp"
 	"sprite_manager.hpp"
@@ -435,7 +435,7 @@
 1311559115 c:\users\cantidio\dropbox\workspace\wizard\include\player.hpp
 	"object.hpp"
 
-1311560287 c:\users\cantidio\dropbox\workspace\wizard\include\magic.hpp
+1312257425 c:\users\cantidio\dropbox\workspace\wizard\include\magic.hpp
 	"object.hpp"
 
 1312135926 c:\users\cantidio\dropbox\workspace\wizard\include\sprite_manager.hpp
@@ -463,7 +463,7 @@
 1311387284 source:c:\users\cantidio\dropbox\workspace\wizard\src\lua_return.cpp
 	"lua_return.hpp"
 
-1312137039 source:c:\users\cantidio\dropbox\workspace\wizard\src\magic.cpp
+1312258201 source:c:\users\cantidio\dropbox\workspace\wizard\src\magic.cpp
 	"magic.hpp"
 
 1312134977 source:c:\users\cantidio\dropbox\workspace\wizard\src\main.cpp
@@ -475,7 +475,7 @@
 	"sprite_manager.hpp"
 	"animation_manager.hpp"
 
-1312249249 source:c:\users\cantidio\dropbox\workspace\wizard\src\player.cpp
+1312257484 source:c:\users\cantidio\dropbox\workspace\wizard\src\player.cpp
 	"player.hpp"
 	"lua.hpp"
 	"input.hpp"
