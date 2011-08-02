@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
-	<File name="include\animation_manager.hpp" open="1" top="0" tabpos="12">
+	<File name="include\animation_manager.hpp" open="1" top="0" tabpos="11">
 		<Cursor position="127" topLine="0" />
 	</File>
-	<File name="include\animationpack.hpp" open="1" top="0" tabpos="10">
+	<File name="include\animationpack.hpp" open="1" top="0" tabpos="9">
 		<Cursor position="136" topLine="0" />
 	</File>
-	<File name="include\game.hpp" open="1" top="0" tabpos="14">
+	<File name="include\game.hpp" open="1" top="0" tabpos="13">
 		<Cursor position="120" topLine="0" />
 	</File>
-	<File name="include\object.hpp" open="1" top="0" tabpos="2">
+	<File name="include\object.hpp" open="1" top="0" tabpos="1">
 		<Cursor position="315" topLine="0" />
 	</File>
 	<File name="include\player.hpp" open="0" top="0" tabpos="3">
@@ -19,37 +19,37 @@
 	<File name="include\point.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="7" topLine="0" />
 	</File>
-	<File name="include\sprite_manager.hpp" open="1" top="0" tabpos="8">
+	<File name="include\sprite_manager.hpp" open="1" top="0" tabpos="7">
 		<Cursor position="277" topLine="0" />
 	</File>
-	<File name="include\spritepack.hpp" open="1" top="0" tabpos="4">
+	<File name="include\spritepack.hpp" open="1" top="0" tabpos="3">
 		<Cursor position="259" topLine="0" />
 	</File>
-	<File name="src\animation_manager.cpp" open="1" top="0" tabpos="13">
+	<File name="src\animation_manager.cpp" open="1" top="0" tabpos="12">
 		<Cursor position="500" topLine="0" />
 	</File>
-	<File name="src\animationpack.cpp" open="1" top="0" tabpos="11">
+	<File name="src\animationpack.cpp" open="1" top="0" tabpos="10">
 		<Cursor position="1378" topLine="0" />
 	</File>
 	<File name="src\bg.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1048" topLine="0" />
 	</File>
-	<File name="src\bg_layer.cpp" open="1" top="0" tabpos="6">
+	<File name="src\bg_layer.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="606" topLine="0" />
 	</File>
-	<File name="src\game.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="953" topLine="16" />
+	<File name="src\game.cpp" open="1" top="1" tabpos="6">
+		<Cursor position="195" topLine="0" />
 	</File>
-	<File name="src\object.cpp" open="1" top="0" tabpos="3">
+	<File name="src\object.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="2419" topLine="9" />
 	</File>
 	<File name="src\point.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="21" topLine="0" />
 	</File>
-	<File name="src\sprite_manager.cpp" open="1" top="0" tabpos="9">
+	<File name="src\sprite_manager.cpp" open="1" top="0" tabpos="8">
 		<Cursor position="420" topLine="0" />
 	</File>
-	<File name="src\spritepack.cpp" open="1" top="0" tabpos="5">
+	<File name="src\spritepack.cpp" open="1" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
