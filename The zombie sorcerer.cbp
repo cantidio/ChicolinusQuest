@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="The zombie sorcerer" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin/Release/The zombie sorcerer" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="include/animation_manager.hpp" />
+		<Unit filename="include/animationpack.hpp" />
+		<Unit filename="include/bg.hpp" />
+		<Unit filename="include/bg_layer.hpp" />
+		<Unit filename="include/collision_box.hpp" />
+		<Unit filename="include/game.hpp" />
+		<Unit filename="include/include.hpp" />
+		<Unit filename="include/input.hpp" />
+		<Unit filename="include/lua.hpp" />
+		<Unit filename="include/lua_argument.hpp" />
+		<Unit filename="include/lua_param.hpp" />
+		<Unit filename="include/lua_return.hpp" />
+		<Unit filename="include/magic.hpp" />
+		<Unit filename="include/object.hpp" />
+		<Unit filename="include/player.hpp" />
+		<Unit filename="include/point.hpp" />
+		<Unit filename="include/script.hpp" />
+		<Unit filename="include/sprite_manager.hpp" />
+		<Unit filename="include/spritepack.hpp" />
+		<Unit filename="src/animation_manager.cpp" />
+		<Unit filename="src/animationpack.cpp" />
+		<Unit filename="src/bg.cpp" />
+		<Unit filename="src/bg_layer.cpp" />
+		<Unit filename="src/collision_box.cpp" />
+		<Unit filename="src/game.cpp" />
+		<Unit filename="src/input.cpp" />
+		<Unit filename="src/lua.cpp" />
+		<Unit filename="src/lua_argument.cpp" />
+		<Unit filename="src/lua_param.cpp" />
+		<Unit filename="src/lua_return.cpp" />
+		<Unit filename="src/magic.cpp" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/object.cpp" />
+		<Unit filename="src/player.cpp" />
+		<Unit filename="src/point.cpp" />
+		<Unit filename="src/sprite_manager.cpp" />
+		<Unit filename="src/spritepack.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

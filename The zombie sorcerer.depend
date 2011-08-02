@@ -1,0 +1,166 @@
+# depslib dependency file v1.0
+1311373647 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\source\point.cpp
+	"point.hpp"
+
+1311436667 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\point.hpp
+
+1311451407 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\animation_manager.cpp
+	"../include/animation_manager.hpp"
+
+1311451315 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\animation_manager.hpp
+	"animationpack.hpp"
+
+1311454734 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\animationpack.hpp
+	"include.hpp"
+
+1311388208 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\include.hpp
+	<stdlib.h>
+	<stdio.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<vector>
+	<string>
+
+1311435054 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\bg.cpp
+	"bg.hpp"
+
+1311552328 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\bg.hpp
+	"bg_layer.hpp"
+	"collision_box.hpp"
+	"lua.hpp"
+
+1311434753 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\bg_layer.hpp
+	"object.hpp"
+	"include.hpp"
+
+1312135953 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\object.hpp
+	"point.hpp"
+	"spritepack.hpp"
+	"animationpack.hpp"
+	"include.hpp"
+	"collision_box.hpp"
+
+1312135343 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\spritepack.hpp
+	"include.hpp"
+	"point.hpp"
+
+1311552299 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\collision_box.hpp
+	"point.hpp"
+	"include.hpp"
+
+1311386075 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\lua.hpp
+	<lua5.1/lua.h>
+	<lua5.1/lualib.h>
+	<lua5.1/lauxlib.h>
+	"lua_param.hpp"
+	"lua_return.hpp"
+	<iostream>
+	<string>
+	<vector>
+
+1311385970 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\lua_param.hpp
+	<lua5.1/lua.h>
+	<lua5.1/lualib.h>
+	<lua5.1/lauxlib.h>
+	"lua_argument.hpp"
+	<string>
+	<vector>
+
+1311386016 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\lua_argument.hpp
+	<lua5.1/lua.h>
+	<lua5.1/lualib.h>
+	<lua5.1/lauxlib.h>
+	<string>
+
+1311385925 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\lua_return.hpp
+	<lua5.1/lua.h>
+	<lua5.1/lualib.h>
+	<lua5.1/lauxlib.h>
+	<iostream>
+	<string>
+	<vector>
+	"lua_argument.hpp"
+
+1311497399 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\input.cpp
+	"../include/input.hpp"
+
+1312133371 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\input.hpp
+	<iostream>
+	<fstream>
+	"include.hpp"
+
+1311387180 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\lua.cpp
+	"lua.hpp"
+	<string>
+
+1311387030 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\lua_argument.cpp
+	"lua_argument.hpp"
+
+1311387215 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\lua_param.cpp
+	"lua_param.hpp"
+	<string>
+
+1311387284 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\lua_return.cpp
+	"lua_return.hpp"
+
+1312137039 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\magic.cpp
+	"magic.hpp"
+
+1311560287 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\magic.hpp
+	"object.hpp"
+
+1312134977 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\main.cpp
+	"game.hpp"
+
+1312134268 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\game.hpp
+	"include.hpp"
+	"object.hpp"
+
+1312136008 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\object.cpp
+	"object.hpp"
+	"lua.hpp"
+	"sprite_manager.hpp"
+	"animation_manager.hpp"
+
+1312135926 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\sprite_manager.hpp
+	"spritepack.hpp"
+
+1312145840 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\player.cpp
+	"player.hpp"
+	"lua.hpp"
+	"input.hpp"
+	"magic.hpp"
+	"game.hpp"
+	"math.h"
+
+1311559115 c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\include\player.hpp
+	"object.hpp"
+
+1311552398 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\point.cpp
+	"point.hpp"
+
+1312136177 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\sprite_manager.cpp
+	"sprite_manager.hpp"
+
+1312136113 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\spritepack.cpp
+	"spritepack.hpp"
+
+1311794589 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\animationpack.cpp
+	"animationpack.hpp"
+	"lua.hpp"
+
+1311873223 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\bg_layer.cpp
+	"bg_layer.hpp"
+	"lua.hpp"
+
+1311873771 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\collision_box.cpp
+	"collision_box.hpp"
+
+1312145394 source:c:\users\cantidio\dropbox\cantídio\mago\the zombie sorcerer\src\game.cpp
+	"game.hpp"
+	"bg_layer.hpp"
+	"sprite_manager.hpp"
+	"player.hpp"
+	"input.hpp"
+	"magic.hpp"
+
