@@ -1,7 +1,7 @@
 #include "magic.hpp"
 
-Magic::Magic(const Point& pPosition, const int& pDir, const Magic::Type& pType) :
-	Object( pPosition, "data/obj/effects/magic.lua" )
+Magic::Magic(const Point& pPosition, const int& pDir, const Magic::Type& pType, BG* pBG) :
+	Object( pPosition, "data/obj/effects/magic.lua", pBG )
 {
 	mType		= pType;
 	mActive		= true;

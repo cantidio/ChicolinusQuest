@@ -5,7 +5,7 @@
 #include "animationpack.hpp"
 #include "include.hpp"
 #include "collision_box.hpp"
-
+class BG;
 class Object
 {
 	protected:
@@ -16,6 +16,7 @@ class Object
 		Point			mOffset;
 		Point			mFriction;
 		Collision		mCollision;
+		BG*				mBG;
 
 		int				mDirection;
 		std::string		mName;
@@ -31,7 +32,7 @@ class Object
 
 
 	public:
-		Object(const Point& pPosition, const std::string& pScript);
+		Object(const Point& pPosition, const std::string& pScript, BG* pBG);
 		Object(const Object& pObject);
 		~Object();
 		bool colide(const Object& pObject);

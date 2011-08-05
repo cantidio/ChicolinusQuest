@@ -1,18 +1,14 @@
 #include "bg.hpp"
 using namespace Gorgon::Script;
 
-BG::BG(std::string& pScript)
+BG::BG(const std::string& pScript)
 {
 	Lua lua(pScript);
 	//register some help functions
 	lua.executeString("function _getLayerNumber()		return #layers end");
-	lua.executeString("function _getLayer(i)			return layers[i + 1] end");
-	lua.executeString("function _getXPosition()			return BG_initialPosition[1] end");
-	lua.executeString("function _getYPosition()			return BG_initialPosition[2] end");
-	lua.executeString("function _getX1GoalRectangle()	return BG_goalRectangle[1] end");
-	lua.executeString("function _getY1GoalRectangle()	return BG_goalRectangle[2] end");
-	lua.executeString("function _getX2GoalRectangle()	return BG_goalRectangle[3] end");
-	lua.executeString("function _getY2GoalRectangle()	return BG_goalRectangle[4] end");
+	lua.executeString("function _getLayerImage(i)		return layers[i + 1].img end");
+	lua.executeString("function _getLayerVelocityX(i)	return layers[i + 1].vel.x end");
+	lua.executeString("function _getLayerVelocityY(i)	return layers[i + 1].vel.y end");
 	lua.executeString("function _getPlayerXPosition()	return playerPosition[1] end");
 	lua.executeString("function _getPlayerYPosition()	return playerPosition[2] end");
 
@@ -21,10 +17,6 @@ BG::BG(std::string& pScript)
 	mHeight				= lua.getNumericVar("BG_height");
 	mPosition.x			= lua.function("_getXPosition"		, LuaParam(""), 1).getNumericValue();
 	mPosition.y			= lua.function("_getYPosition"		, LuaParam(""), 1).getNumericValue();
-	mCollisionBox.a.x	= lua.function("_getX1GoalRectangle", LuaParam(""), 1).getNumericValue();
-	mCollisionBox.a.y	= lua.function("_getY1GoalRectangle", LuaParam(""), 1).getNumericValue();
-	mCollisionBox.b.x	= lua.function("_getX2GoalRectangle", LuaParam(""), 1).getNumericValue();
-	mCollisionBox.b.y	= lua.function("_getY2GoalRectangle", LuaParam(""), 1).getNumericValue();
 
 	Point playerPosition;
 	mPlayerLayer		= lua.getNumericVar("playerLayer");
@@ -34,7 +26,18 @@ BG::BG(std::string& pScript)
 
 	for(register int i = 0 ; i < layerNum; ++i)
 	{
-		mLayers.push_back(new BGLayer(   lua.function("_getLayer", LuaParam(""), 1).getStringValue()  ));
+		mLayers.push_back
+		(
+			new BGLayer
+			(
+				lua.function("_getLayerImage", LuaParam("i",i), 1).getStringValue(),
+				Point
+				(
+					lua.function("_getLayerVelocityX", LuaParam("i",i), 1).getNumericValue(),
+					lua.function("_getLayerVelocityY", LuaParam("i",i), 1).getNumericValue()
+				)
+			)
+		);
 
 		if(i == mPlayerLayer)
 		{
@@ -54,11 +57,21 @@ BG::~BG()
 
 void BG::draw() const
 {
-
+	for(unsigned int i = 0 ; i < mLayers.size(); ++i)
+	{
+		mLayers[i]->draw(mPosition);;
+	}
 }
 
 void BG::logic()
 {
-
+	for(unsigned int i = 0 ; i < mLayers.size(); ++i)
+	{
+		mLayers[i]->logic();
+	}
 }
 
+BGLayer* BG::getLayer(const unsigned int& pLayer)
+{
+	return mLayers[pLayer];
+}

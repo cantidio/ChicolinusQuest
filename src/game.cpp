@@ -1,5 +1,5 @@
 #include "game.hpp"
-#include "bg_layer.hpp"
+#include "bg.hpp"
 #include "sprite_manager.hpp"
 #include "player.hpp"
 #include "input.hpp"
@@ -85,17 +85,23 @@ bool Game::stateQuit()
 
 bool Game::stateDisclaimer()
 {
-	addObject( new Player ( Point( 0, 230 ) ) );
-	Magic *a = new Magic(Point( 0, 230 ) , 1, Magic::FIRE);
+	BG bg("data/bg/bg1/bg1.lua");
+	Player* player = new Player ( Point( 0, 230 ), &bg );
+	addPlayer( player );
+	bg.getLayer(3)->addObject(player);
+	Magic *a = new Magic(Point( 0, 230 ) , 1, Magic::FIRE, NULL);
 	al_set_target_backbuffer( mDisplay );
 
 	double x = 0;
-	//printf("logic\n");
+
 	do
 	{
+	//	printf("magic on the game: %d\n",mMagics.size()); //deletar as magias manolo
 		Input::get().update();
-		al_clear_to_color( al_map_rgb( 0, 255, 0 ) );
+		al_clear_to_color( al_map_rgb( 0, 0, 0 ) );
 
+bg.draw();
+bg.logic();/*
 		for( int i = 0; i < mObjects.size(); ++i )
 		{
 			mObjects[i]->draw(Point(0,0));
@@ -105,7 +111,7 @@ bool Game::stateDisclaimer()
 		{
 			mPlayers[i]->draw(Point(0,0));
 			mPlayers[i]->logic();
-		}
+		}*/
 		for( int i = 0; i < mMagics.size(); ++i )
 		{
 			mMagics[i]->draw(Point(0,0));

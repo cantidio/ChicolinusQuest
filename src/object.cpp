@@ -2,9 +2,10 @@
 #include "lua.hpp"
 #include "sprite_manager.hpp"
 #include "animation_manager.hpp"
+#include "bg.hpp"
 
 using namespace Gorgon::Script;
-Object::Object(const Point& pPosition, const std::string& pScript)
+Object::Object(const Point& pPosition, const std::string& pScript, BG* pBG)
 {
 	Lua lua(pScript);
 	lua.executeString("function _getXMaxAcceleration()	return max_acceleration[1] end"		);
@@ -61,6 +62,7 @@ Object::Object(const Point& pPosition, const std::string& pScript)
 	mTimeOn				= 0;
 	mFrameOn			= 0;
 	mAnimationOn		= 0;
+	mBG					= pBG;
 }
 
 Object::~Object()

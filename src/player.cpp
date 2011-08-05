@@ -4,10 +4,12 @@
 #include "magic.hpp"
 #include "game.hpp"
 #include "math.h"
+#include "bg.hpp"
+
 using namespace Gorgon::Script;
 
-Player::Player(const Point& pPosition) :
-	Object(pPosition, "data/obj/player/Chicus/chicus.lua")
+Player::Player(const Point& pPosition, BG* pBG) :
+	Object(pPosition, "data/obj/player/Chicus/chicus.lua", pBG)
 {
 	Lua lua("data/obj/player/Chicus/chicus.lua");
 	mLevel 		= lua.getNumericVar("level");
@@ -46,6 +48,11 @@ bool Player::move()
 			mCurrentAcceleration.x = -mMaxAcceleration.x ;
 		}
 		mDirection = 1;
+		if(mBG != NULL && mPosition.x < 160)
+		{
+			mBG->mPosition.x = mBG->mPosition.x - (160 - mPosition.x);
+			mPosition.x = 160;
+		}
 	}
 	else if( Input::get().buttonRight() )
 	{
@@ -55,11 +62,18 @@ bool Player::move()
 			mCurrentAcceleration.x = mMaxAcceleration.x ;
 		}
 		mDirection = 0;
+
+		if(mBG != NULL && mPosition.x > 160)
+		{
+			mBG->mPosition.x = mBG->mPosition.x + (mPosition.x - 160);
+			mPosition.x = 160;
+		}
 	}
 	else
 	{
 		return false;
 	}
+
 	return true;
 }
 
@@ -141,11 +155,11 @@ void Player::stateShotting()
 		printf("shot\n");
 		if(mDirection == 0)
 		{
-            Game::addMagic( new Magic(Point( mPosition.x + 30, mPosition.y + 15 ) , 1, Magic::FIRE) );
+            Game::addMagic( new Magic(Point( mPosition.x + 30, mPosition.y + 15 ) , 1, Magic::FIRE, mBG) );
 		}
 		else
 		{
-		    Game::addMagic( new Magic(Point( mPosition.x - 30, mPosition.y + 15 ) , 0, Magic::FIRE) );
+		    Game::addMagic( new Magic(Point( mPosition.x - 30, mPosition.y + 15 ) , 0, Magic::FIRE, mBG) );
 		}
 	}
 	if(isDead())
@@ -183,11 +197,11 @@ void Player::stateSpecialShotting()
                 int magic = rand()%Magic::MAGIC_NUMBER;
                 if(mDirection == 0)
                 {
-                    Game::addMagic( new Magic(Point( mPosition.x + 30, mPosition.y + 15 + y ) , 1, (Magic::Type) magic) );
+                    Game::addMagic( new Magic(Point( mPosition.x + 30, mPosition.y + 15 + y ) , 1, (Magic::Type) magic, mBG) );
                 }
                 else
                 {
-                    Game::addMagic( new Magic(Point( mPosition.x - 30, mPosition.y + 15 + y ) , 0, (Magic::Type) magic) );
+                    Game::addMagic( new Magic(Point( mPosition.x - 30, mPosition.y + 15 + y ) , 0, (Magic::Type) magic, mBG) );
                 }
             }
 	    }

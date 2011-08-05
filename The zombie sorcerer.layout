@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
+	<File name="data\obj\effects\magic_animation.lua" open="1" top="0" tabpos="16">
+		<Cursor position="123" topLine="0" />
+	</File>
 	<File name="include\animation_manager.hpp" open="1" top="0" tabpos="11">
 		<Cursor position="127" topLine="0" />
 	</File>
 	<File name="include\animationpack.hpp" open="1" top="0" tabpos="9">
 		<Cursor position="136" topLine="0" />
 	</File>
+	<File name="include\enemy.hpp" open="1" top="0" tabpos="19">
+		<Cursor position="62" topLine="0" />
+	</File>
 	<File name="include\game.hpp" open="1" top="0" tabpos="13">
 		<Cursor position="120" topLine="0" />
+	</File>
+	<File name="include\magic.hpp" open="1" top="0" tabpos="15">
+		<Cursor position="152" topLine="0" />
 	</File>
 	<File name="include\object.hpp" open="1" top="0" tabpos="1">
 		<Cursor position="315" topLine="0" />
@@ -37,11 +46,20 @@
 	<File name="src\bg_layer.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="606" topLine="0" />
 	</File>
+	<File name="src\enemy.cpp" open="1" top="0" tabpos="18">
+		<Cursor position="20" topLine="0" />
+	</File>
 	<File name="src\game.cpp" open="1" top="1" tabpos="6">
-		<Cursor position="195" topLine="0" />
+		<Cursor position="2055" topLine="73" />
+	</File>
+	<File name="src\magic.cpp" open="1" top="0" tabpos="17">
+		<Cursor position="924" topLine="32" />
 	</File>
 	<File name="src\object.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="2419" topLine="9" />
+	</File>
+	<File name="src\player.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="3880" topLine="167" />
 	</File>
 	<File name="src\point.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="21" topLine="0" />

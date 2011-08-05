@@ -12,7 +12,7 @@ class Magic : public Object
 			ROCK,
 			MAGIC_NUMBER
 		};
-		Magic(const Point& pPosition, const int& pDir, const Magic::Type& pType);
+		Magic(const Point& pPosition, const int& pDir, const Magic::Type& pType, BG* pBG);
 		void stateCreate();
 		void stateStand();
 		void stateDestroy();

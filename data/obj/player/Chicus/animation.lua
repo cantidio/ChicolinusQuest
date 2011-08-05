@@ -1,7 +1,7 @@
 animations = {
 
 	{ delay = 15, frames = {1,2,3,2} },																--0 stand
-	{ delay = 10, frames = {4,5,6,7,8,7,6,5} },														--1 walk
+	{ delay = 7, frames = {4,5,6,7,8,7,6,5} },														--1 walk
 	{ delay = 15, frames = {1,9,10,11,9} },															--2 shot
 	{ delay = 5, frames = {1,9,10,11,10,11,10,11,10,11,10,11,10,11,10,11,10,11,10,11,10,11} },		--3 shotting
 	{ delay = 5, frames = {12} },																	--4 jumpInit or landing

@@ -8,16 +8,17 @@ class BG
 {
 	protected:
 		std::vector<BGLayer*>	mLayers;
-		Point					mPosition;
 		Collision				mCollisionBox;
 		std::string				mName;
 		int						mWidth;
 		int						mHeight;
 		int						mPlayerLayer;
 	public:
-		BG(std::string& pScript);
+		Point					mPosition;
+		BG(const std::string& pScript);
 		~BG();
 		void draw() const;
 		void logic();
+		BGLayer* getLayer(const unsigned int& pLayer);
 };
 #endif

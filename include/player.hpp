@@ -14,7 +14,7 @@ class Player : public Object
 		bool mCanShot;
 		void (Player::*mState)();  /**<< pointer to the player state*/
     public:
-		Player(const Point& pPosition);
+		Player(const Point& pPosition, BG* pBG);
 		~Player();
 		bool move();
 		bool isDead() const;
