@@ -24,6 +24,13 @@ BG::BG(const std::string& pScript)
 	playerPosition.y	= lua.function("_getPlayerYPosition", LuaParam(""), 1).getNumericValue();
 	const int layerNum	= lua.function("_getLayerNumber"	, LuaParam(""), 1).getNumericValue();
 
+	mMusic			= al_load_sample( lua.getStringVar("music").c_str() );
+	mCameraTarget	= NULL;
+	if (mMusic == NULL)
+	{
+		printf( "BG music:\"%s\" couldn't be loaded!\n", lua.getStringVar("music").c_str() );
+	}
+
 	for(register int i = 0 ; i < layerNum; ++i)
 	{
 		mLayers.push_back
@@ -53,6 +60,8 @@ BG::~BG()
 		delete mLayers[i];
 	}
 	mLayers.clear();
+	//al_stop_sample( mMusic );
+	al_destroy_sample( mMusic );
 }
 
 void BG::draw() const
@@ -65,6 +74,44 @@ void BG::draw() const
 
 void BG::logic()
 {
+	if( mMusic != NULL )//if no music is playing, play it!
+	{
+		al_play_sample( mMusic, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL );
+	}
+	if( mCameraTarget != NULL )
+	{
+		Point cameraPos = mPosition;
+		Point targetPos = mCameraTarget->getPosition();
+		const int width = 320;
+		const int height = 240;
+
+		if( targetPos.x >= ( width / 2 ) )
+		{
+			if( targetPos.x <= ( 99999999 - width / 2 ) )
+			{
+				cameraPos.x = 1 * ( targetPos.x - width / 2 );
+			}
+			else if( targetPos.x >= (99999999 - width/2) )
+			{
+				cameraPos.x = 1 * (99999999 - width);
+			}
+		}
+		else
+		{
+			cameraPos.x = 0;
+		}
+		mPosition.x = cameraPos.x;
+
+			/*if	targetPos.y >= (window_height/2) then
+				if targetPos.y <= (self.mHeight - window_height/2) then
+					cameraPos.y = -1 * (targetPos.y - window_height/2 )
+				elseif targetPos.y >= (self.mHeight - window_height/2) then
+					cameraPos.y = -1 * (self.mHeight - window_height)
+				end
+			elseif targetPos.y <= (window_height/2) then
+				cameraPos.y = 0
+			end*/
+	}
 	for(unsigned int i = 0 ; i < mLayers.size(); ++i)
 	{
 		mLayers[i]->logic();
@@ -75,3 +122,9 @@ BGLayer* BG::getLayer(const unsigned int& pLayer)
 {
 	return mLayers[pLayer];
 }
+
+void BG::setCameraTarget(Object* pObject)
+{
+	mCameraTarget = pObject;
+}
+

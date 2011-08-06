@@ -5,6 +5,9 @@
 #include "input.hpp"
 #include "magic.hpp"
 
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
+
 std::vector<Object*>	Game::mObjects;
 std::vector<Player*>	Game::mPlayers;
 std::vector<Magic*>		Game::mMagics;
@@ -62,7 +65,26 @@ bool Game::stateInit()
 {
 	printf("game state: init\n");
 	al_init();
-	al_init_image_addon();
+	if(!al_init_image_addon())
+	{
+		printf("failed to initialize image addon!\n");
+		return -1;
+	}
+	if(!al_install_audio())
+	{
+		printf("failed to initialize audio!\n");
+		return -1;
+	}
+	if(!al_init_acodec_addon())
+	{
+		printf("failed to initialize audio codecs!\n");
+		return -1;
+	}
+	if (!al_reserve_samples(10))
+	{
+		printf("failed to reserve samples!\n");
+		return -1;
+	}
 	al_set_new_display_flags(ALLEGRO_OPENGL);
     srand(NULL);
 	mDisplay = al_create_display(mWidth, mHeight);
@@ -80,6 +102,8 @@ bool Game::stateQuit()
 {
 	printf("game state: quit\n");
 
+	al_uninstall_audio();
+
 	return false;
 }
 
@@ -92,6 +116,7 @@ bool Game::stateDisclaimer()
 	Magic *a = new Magic(Point( 0, 230 ) , 1, Magic::FIRE, NULL);
 	al_set_target_backbuffer( mDisplay );
 
+	bg.setCameraTarget(player);
 	double x = 0;
 
 	do

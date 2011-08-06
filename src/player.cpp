@@ -48,11 +48,11 @@ bool Player::move()
 			mCurrentAcceleration.x = -mMaxAcceleration.x ;
 		}
 		mDirection = 1;
-		if(mBG != NULL && mPosition.x < 160)
+		/*if(mBG != NULL && mPosition.x < 160)
 		{
 			mBG->mPosition.x = mBG->mPosition.x - (160 - mPosition.x);
 			mPosition.x = 160;
-		}
+		}*/
 	}
 	else if( Input::get().buttonRight() )
 	{
@@ -63,11 +63,11 @@ bool Player::move()
 		}
 		mDirection = 0;
 
-		if(mBG != NULL && mPosition.x > 160)
+	/*	if(mBG != NULL && mPosition.x > 160)
 		{
 			mBG->mPosition.x = mBG->mPosition.x + (mPosition.x - 160);
 			mPosition.x = 160;
-		}
+		}*/
 	}
 	else
 	{

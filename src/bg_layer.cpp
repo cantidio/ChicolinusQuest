@@ -14,7 +14,16 @@ BGLayer::~BGLayer()
 {
 	al_destroy_bitmap( mImage );
 }
+/*
 
+-lallegro
+-lallegro_color
+-lallegro_image
+-lallegro_primitives
+-lallegro_memfile
+-lallegro_audio
+-lallegro_acodec
+*/
 void BGLayer::addObject(Object* pObject)
 {
 	mObjects.push_back(pObject);
@@ -53,7 +62,7 @@ void BGLayer::draw(const Point& pPosition) const
 	//draw objects
 	for(register unsigned int i = 0; i < mObjects.size(); ++i)
 	{
-		mObjects[i]->draw( Point( 0,0 ) );
+		mObjects[i]->draw( Point( -base_x,base_y ) );
 	}
 }
 

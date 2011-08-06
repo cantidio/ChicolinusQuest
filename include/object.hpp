@@ -42,5 +42,9 @@ class Object
 		bool animationIsOver() const;
 		void changeAnimation( const unsigned int& pAnimation, const bool pForce = false );
 		void operator = (const Object& pObject);
+		inline Point getPosition() const
+		{
+			return mPosition;
+		}
 };
 #endif

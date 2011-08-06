@@ -337,11 +337,13 @@
 1311454734 c:\users\cantidio\dropbox\workspace\wizard\include\animationpack.hpp
 	"include.hpp"
 
-1311388208 c:\users\cantidio\dropbox\workspace\wizard\include\include.hpp
+1312583673 c:\users\cantidio\dropbox\workspace\wizard\include\include.hpp
 	<stdlib.h>
 	<stdio.h>
 	<allegro5/allegro.h>
 	<allegro5/allegro_image.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
 	<vector>
 	<string>
 
@@ -382,10 +384,10 @@
 	<vector>
 	"lua_argument.hpp"
 
-1312515232 source:c:\users\cantidio\dropbox\workspace\wizard\src\bg.cpp
+1312589561 source:c:\users\cantidio\dropbox\workspace\wizard\src\bg.cpp
 	"bg.hpp"
 
-1312515416 c:\users\cantidio\dropbox\workspace\wizard\include\bg.hpp
+1312579873 c:\users\cantidio\dropbox\workspace\wizard\include\bg.hpp
 	"bg_layer.hpp"
 	"collision_box.hpp"
 	"lua.hpp"
@@ -394,7 +396,7 @@
 	"object.hpp"
 	"include.hpp"
 
-1312508849 c:\users\cantidio\dropbox\workspace\wizard\include\object.hpp
+1312583843 c:\users\cantidio\dropbox\workspace\wizard\include\object.hpp
 	"point.hpp"
 	"spritepack.hpp"
 	"animationpack.hpp"
@@ -411,20 +413,22 @@
 	"point.hpp"
 	"include.hpp"
 
-1312515517 source:c:\users\cantidio\dropbox\workspace\wizard\src\bg_layer.cpp
+1312589323 source:c:\users\cantidio\dropbox\workspace\wizard\src\bg_layer.cpp
 	"bg_layer.hpp"
 	"lua.hpp"
 
 1311873771 source:c:\users\cantidio\dropbox\workspace\wizard\src\collision_box.cpp
 	"collision_box.hpp"
 
-1312515751 source:c:\users\cantidio\dropbox\workspace\wizard\src\game.cpp
+1312589064 source:c:\users\cantidio\dropbox\workspace\wizard\src\game.cpp
 	"game.hpp"
 	"bg.hpp"
 	"sprite_manager.hpp"
 	"player.hpp"
 	"input.hpp"
 	"magic.hpp"
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
 
 1312249318 c:\users\cantidio\dropbox\workspace\wizard\include\game.hpp
 	"include.hpp"
@@ -476,7 +480,7 @@
 	"animation_manager.hpp"
 	"bg.hpp"
 
-1312515600 source:c:\users\cantidio\dropbox\workspace\wizard\src\player.cpp
+1312588963 source:c:\users\cantidio\dropbox\workspace\wizard\src\player.cpp
 	"player.hpp"
 	"lua.hpp"
 	"input.hpp"
