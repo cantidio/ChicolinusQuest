@@ -24,11 +24,25 @@ BG::BG(const std::string& pScript)
 	playerPosition.y	= lua.function("_getPlayerYPosition", LuaParam(""), 1).getNumericValue();
 	const int layerNum	= lua.function("_getLayerNumber"	, LuaParam(""), 1).getNumericValue();
 
-	mMusic			= al_load_sample( lua.getStringVar("music").c_str() );
 	mCameraTarget	= NULL;
+	mMusic			= al_load_sample( lua.getStringVar("music").c_str() );
 	if (mMusic == NULL)
 	{
 		printf( "BG music:\"%s\" couldn't be loaded!\n", lua.getStringVar("music").c_str() );
+	}
+	else
+	{
+		mMusicInstance = al_create_sample_instance( mMusic );
+		al_set_sample_instance_gain		( mMusicInstance, 1.0);
+		al_set_sample_instance_pan		( mMusicInstance, 0.0);
+		al_set_sample_instance_playmode	( mMusicInstance, ALLEGRO_PLAYMODE_LOOP );
+		al_set_sample_instance_speed	( mMusicInstance, 1.0 );
+		
+		printf("time: %f\n", al_get_sample_instance_time( mMusicInstance ) );
+		
+		
+		al_attach_sample_instance_to_mixer( mMusicInstance, al_get_default_mixer() );
+		
 	}
 
 	for(register int i = 0 ; i < layerNum; ++i)
@@ -60,7 +74,8 @@ BG::~BG()
 		delete mLayers[i];
 	}
 	mLayers.clear();
-	//al_stop_sample( mMusic );
+	al_stop_sample_instance( mMusicInstance );
+	al_destroy_sample_instance( mMusicInstance );
 	al_destroy_sample( mMusic );
 }
 
@@ -74,10 +89,12 @@ void BG::draw() const
 
 void BG::logic()
 {
-	if( mMusic != NULL )//if no music is playing, play it!
+	if( mMusicInstance != NULL && !al_get_sample_instance_playing( mMusicInstance ) )//if no music is playing, play it!
 	{
-		al_play_sample( mMusic, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL );
+		printf("play the mothafucka\n");
+		al_play_sample_instance( mMusicInstance );//, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL );
 	}
+
 	if( mCameraTarget != NULL )
 	{
 		Point cameraPos = mPosition;

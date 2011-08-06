@@ -10,6 +10,7 @@ class BG
 	protected:
 		std::vector<BGLayer*>	mLayers;
 		ALLEGRO_SAMPLE*			mMusic;
+		ALLEGRO_SAMPLE_INSTANCE* mMusicInstance;
 		Collision				mCollisionBox;
 		std::string				mName;
 		int						mWidth;
@@ -25,4 +26,4 @@ class BG
 		BGLayer* getLayer(const unsigned int& pLayer);
 		void setCameraTarget(Object* pObject);
 };
-#endif
+#endif	

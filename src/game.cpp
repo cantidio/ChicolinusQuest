@@ -14,7 +14,9 @@ std::vector<Magic*>		Game::mMagics;
 
 int Game::mWidth	= 320;
 int Game::mHeight	= 240;
-
+ALLEGRO_VOICE* voice;
+ALLEGRO_MIXER* mixer;
+    
 Game::Game()
 {
 	printf( "game on...\n" );
@@ -34,6 +36,13 @@ Game::~Game()
 	{
 		al_destroy_display(mDisplay);
 	}
+
+	al_detach_voice(voice);
+	al_detach_mixer(mixer);
+	al_destroy_voice(voice);
+	al_destroy_mixer(mixer);
+	
+	al_uninstall_audio();
 	SpriteManager::clear();
 }
 
@@ -80,12 +89,25 @@ bool Game::stateInit()
 		printf("failed to initialize audio codecs!\n");
 		return -1;
 	}
-	if (!al_reserve_samples(10))
+
+	voice = al_create_voice(44100, ALLEGRO_AUDIO_DEPTH_INT16, ALLEGRO_CHANNEL_CONF_2);
+    mixer = al_create_mixer(44100, ALLEGRO_AUDIO_DEPTH_INT16, ALLEGRO_CHANNEL_CONF_2);
+    
+    al_attach_mixer_to_voice(mixer, voice);
+	//ALLEGRO_MIXER *mixer = al_create_mixer(44100, ALLEGRO_AUDIO_DEPTH_FLOAT32, ALLEGRO_CHANNEL_CONF_2);
+	//al_set_mixer_playing( mixer, true );
+	al_set_default_mixer(mixer);
+	
+	
+	
+/*	if (!al_reserve_samples(1))
 	{
 		printf("failed to reserve samples!\n");
 		return -1;
 	}
+*/
 	al_set_new_display_flags(ALLEGRO_OPENGL);
+	al_set_new_bitmap_flags(ALLEGRO_VIDEO_BITMAP);
     srand(NULL);
 	mDisplay = al_create_display(mWidth, mHeight);
 	if(mDisplay	== NULL) exit(0);
@@ -101,9 +123,6 @@ bool Game::stateInit()
 bool Game::stateQuit()
 {
 	printf("game state: quit\n");
-
-	al_uninstall_audio();
-
 	return false;
 }
 
@@ -117,7 +136,6 @@ bool Game::stateDisclaimer()
 	al_set_target_backbuffer( mDisplay );
 
 	bg.setCameraTarget(player);
-	double x = 0;
 
 	do
 	{
@@ -125,8 +143,14 @@ bool Game::stateDisclaimer()
 		Input::get().update();
 		al_clear_to_color( al_map_rgb( 0, 0, 0 ) );
 
-bg.draw();
-bg.logic();/*
+		bg.draw();
+		bg.logic();
+		for( int i = 0; i < mMagics.size(); ++i )
+		{
+			mMagics[i]->draw(Point(0,0));
+			mMagics[i]->logic();
+		}
+		/*
 		for( int i = 0; i < mObjects.size(); ++i )
 		{
 			mObjects[i]->draw(Point(0,0));
@@ -137,15 +161,7 @@ bg.logic();/*
 			mPlayers[i]->draw(Point(0,0));
 			mPlayers[i]->logic();
 		}*/
-		for( int i = 0; i < mMagics.size(); ++i )
-		{
-			mMagics[i]->draw(Point(0,0));
-			mMagics[i]->logic();
-		}
-
-		x+=1.5;
-		if(x>320) x = 0;
-
+		
 	/*	if(a.colide(b))
 		{
 			printf("colidiu com o mago safado!\n");
@@ -156,9 +172,9 @@ bg.logic();/*
 
 
 		al_flip_display();
-		al_rest(0.01);
+	//	al_rest(0.01);
 	}while(! Input::get().buttonStart() );
 
 	 this->mState	= &Game::stateQuit;
-	 return false;
+	 return true;
 }
