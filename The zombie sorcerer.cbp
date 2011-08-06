@@ -17,7 +17,6 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add option="-llua5.1" />
 				</Linker>
 			</Target>
 		</Build>
@@ -30,6 +29,9 @@
 			<Add option="-lallegro_image" />
 			<Add option="-lallegro_primitives" />
 			<Add option="-lallegro_memfile" />
+			<Add option="-lallegro_audio" />
+			<Add option="-lallegro_acodec" />
+			<Add option="-llua5.1" />
 		</Linker>
 		<Unit filename="data\bg\teste\layer0.lua" />
 		<Unit filename="data\bg\teste\teste.lua" />

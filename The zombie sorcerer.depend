@@ -384,10 +384,10 @@
 	<vector>
 	"lua_argument.hpp"
 
-1312589561 source:c:\users\cantidio\dropbox\workspace\wizard\src\bg.cpp
+1312607791 source:c:\users\cantidio\dropbox\workspace\wizard\src\bg.cpp
 	"bg.hpp"
 
-1312579873 c:\users\cantidio\dropbox\workspace\wizard\include\bg.hpp
+1312604445 c:\users\cantidio\dropbox\workspace\wizard\include\bg.hpp
 	"bg_layer.hpp"
 	"collision_box.hpp"
 	"lua.hpp"
@@ -420,7 +420,7 @@
 1311873771 source:c:\users\cantidio\dropbox\workspace\wizard\src\collision_box.cpp
 	"collision_box.hpp"
 
-1312589064 source:c:\users\cantidio\dropbox\workspace\wizard\src\game.cpp
+1312607879 source:c:\users\cantidio\dropbox\workspace\wizard\src\game.cpp
 	"game.hpp"
 	"bg.hpp"
 	"sprite_manager.hpp"
@@ -430,7 +430,7 @@
 	<allegro5/allegro_audio.h>
 	<allegro5/allegro_acodec.h>
 
-1312249318 c:\users\cantidio\dropbox\workspace\wizard\include\game.hpp
+1312608513 c:\users\cantidio\dropbox\workspace\wizard\include\game.hpp
 	"include.hpp"
 	"object.hpp"
 	"player.hpp"

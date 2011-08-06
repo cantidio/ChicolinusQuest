@@ -16,7 +16,7 @@ int Game::mWidth	= 320;
 int Game::mHeight	= 240;
 ALLEGRO_VOICE* voice;
 ALLEGRO_MIXER* mixer;
-    
+
 Game::Game()
 {
 	printf( "game on...\n" );
@@ -37,11 +37,11 @@ Game::~Game()
 		al_destroy_display(mDisplay);
 	}
 
-	al_detach_voice(voice);
+	/*al_detach_voice(voice);
 	al_detach_mixer(mixer);
 	al_destroy_voice(voice);
 	al_destroy_mixer(mixer);
-	
+*/
 	al_uninstall_audio();
 	SpriteManager::clear();
 }
@@ -79,33 +79,29 @@ bool Game::stateInit()
 		printf("failed to initialize image addon!\n");
 		return -1;
 	}
+	printf("aqui\n");
 	if(!al_install_audio())
 	{
 		printf("failed to initialize audio!\n");
 		return -1;
 	}
+	printf("aqui\n");
 	if(!al_init_acodec_addon())
 	{
 		printf("failed to initialize audio codecs!\n");
 		return -1;
 	}
 
-	voice = al_create_voice(44100, ALLEGRO_AUDIO_DEPTH_INT16, ALLEGRO_CHANNEL_CONF_2);
+/*	voice = al_create_voice(44100, ALLEGRO_AUDIO_DEPTH_INT16, ALLEGRO_CHANNEL_CONF_2);
     mixer = al_create_mixer(44100, ALLEGRO_AUDIO_DEPTH_INT16, ALLEGRO_CHANNEL_CONF_2);
-    
     al_attach_mixer_to_voice(mixer, voice);
-	//ALLEGRO_MIXER *mixer = al_create_mixer(44100, ALLEGRO_AUDIO_DEPTH_FLOAT32, ALLEGRO_CHANNEL_CONF_2);
-	//al_set_mixer_playing( mixer, true );
-	al_set_default_mixer(mixer);
-	
-	
-	
-/*	if (!al_reserve_samples(1))
+	al_set_default_mixer(mixer);*/
+	if (!al_reserve_samples(1))
 	{
 		printf("failed to reserve samples!\n");
 		return -1;
 	}
-*/
+
 	al_set_new_display_flags(ALLEGRO_OPENGL);
 	al_set_new_bitmap_flags(ALLEGRO_VIDEO_BITMAP);
     srand(NULL);
@@ -161,7 +157,7 @@ bool Game::stateDisclaimer()
 			mPlayers[i]->draw(Point(0,0));
 			mPlayers[i]->logic();
 		}*/
-		
+
 	/*	if(a.colide(b))
 		{
 			printf("colidiu com o mago safado!\n");

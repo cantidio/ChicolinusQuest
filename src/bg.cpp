@@ -1,4 +1,15 @@
 #include "bg.hpp"
+
+/*
+
+-lallegro
+-lallegro_color
+-lallegro_image
+-lallegro_primitives
+-lallegro_memfile
+-lallegro_audio
+-lallegro_acodec
+*/
 using namespace Gorgon::Script;
 
 BG::BG(const std::string& pScript)
@@ -28,6 +39,7 @@ BG::BG(const std::string& pScript)
 	mMusic			= al_load_sample( lua.getStringVar("music").c_str() );
 	if (mMusic == NULL)
 	{
+		mMusicInstance = NULL;
 		printf( "BG music:\"%s\" couldn't be loaded!\n", lua.getStringVar("music").c_str() );
 	}
 	else
@@ -37,12 +49,10 @@ BG::BG(const std::string& pScript)
 		al_set_sample_instance_pan		( mMusicInstance, 0.0);
 		al_set_sample_instance_playmode	( mMusicInstance, ALLEGRO_PLAYMODE_LOOP );
 		al_set_sample_instance_speed	( mMusicInstance, 1.0 );
-		
+
 		printf("time: %f\n", al_get_sample_instance_time( mMusicInstance ) );
-		
-		
 		al_attach_sample_instance_to_mixer( mMusicInstance, al_get_default_mixer() );
-		
+
 	}
 
 	for(register int i = 0 ; i < layerNum; ++i)
@@ -59,11 +69,6 @@ BG::BG(const std::string& pScript)
 				)
 			)
 		);
-
-		if(i == mPlayerLayer)
-		{
-//			mLayer[i]->addObject( PLAYER );
-		}
 	}
 }
 
@@ -74,9 +79,16 @@ BG::~BG()
 		delete mLayers[i];
 	}
 	mLayers.clear();
-	al_stop_sample_instance( mMusicInstance );
-	al_destroy_sample_instance( mMusicInstance );
-	al_destroy_sample( mMusic );
+	if( mMusicInstance != NULL)
+	{
+		al_stop_sample_instance( mMusicInstance );
+		al_destroy_sample_instance( mMusicInstance );
+	}
+	if( mMusic != NULL )
+	{
+		al_destroy_sample( mMusic );
+	}
+
 }
 
 void BG::draw() const
