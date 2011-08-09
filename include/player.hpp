@@ -10,7 +10,6 @@ class Player : public Actor
 		audiere::SoundEffectPtr	mSHurt;
 		audiere::SoundEffectPtr	mSDying;
 		audiere::SoundEffectPtr	mSJumping;
-		audiere::SoundEffectPtr	mSMagic;
 		audiere::SoundEffectPtr	mSSteps;
 		audiere::SoundEffectPtr	mSLand;
 

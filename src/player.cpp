@@ -19,7 +19,6 @@ Player::Player(const Point& pPosition, BG* pBG) :
 
 	mSSteps		= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/effects/passo1.wav"			, audiere::MULTIPLE );
 	mSLand		= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/effects/efeito2.wav"			, audiere::MULTIPLE );
-	mSMagic		= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/effects/efeito3.wav"			, audiere::MULTIPLE );
 	mSFire		= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/player/chicus/atacando.wav"	, audiere::MULTIPLE );
 	mSSpecial	= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/player/chicus/especial.wav"	, audiere::MULTIPLE );
 	mSJumping	= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/player/chicus/pulando.wav"	, audiere::MULTIPLE );
@@ -153,8 +152,6 @@ void Player::stateShotting()
 {
 	if(mFrameOn == 3 && mCanShot)
 	{
-
-		mSMagic->play();
 		mCanShot = false;
 		printf("shot\n");
 		if(mDirection == 0)
@@ -196,9 +193,8 @@ void Player::stateSpecialShotting()
 	    {
             if(mCanShot)
             {
-            	mSMagic->play();
+            	printf("shot\n");
                 mCanShot = false;
-                printf("shot\n");
                 double y = sin(mFrameOn)* 5;
                 int magic = rand()%Magic::MAGIC_NUMBER;
                 if(mDirection == 0)

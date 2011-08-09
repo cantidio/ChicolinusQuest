@@ -47,6 +47,7 @@
 		<Unit filename="include\bg_layer.hpp" />
 		<Unit filename="include\collision_box.hpp" />
 		<Unit filename="include\enemy.hpp" />
+		<Unit filename="include\enemy_wizard.hpp" />
 		<Unit filename="include\game.hpp" />
 		<Unit filename="include\hud.hpp" />
 		<Unit filename="include\include.hpp" />
@@ -69,6 +70,7 @@
 		<Unit filename="src\bg_layer.cpp" />
 		<Unit filename="src\collision_box.cpp" />
 		<Unit filename="src\enemy.cpp" />
+		<Unit filename="src\enemy_wizard.cpp" />
 		<Unit filename="src\game.cpp" />
 		<Unit filename="src\hud.cpp" />
 		<Unit filename="src\input.cpp" />

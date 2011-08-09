@@ -1,28 +1,14 @@
 #include "magic.hpp"
-
+#include "game.hpp"
 Magic::Magic(const Point& pPosition, const int& pDir, const Magic::Type& pType, BG* pBG) :
 	Object( pPosition, "data/obj/effects/magic.lua", pBG )
 {
 	mType		= pType;
 	mActive		= true;
 	mDirection	= pDir;
-	mState		= &Magic::stateCreate;
-
-	switch( mType )
-	{
-		case Magic::FIRE:
-			mDamage = 3 ;
-			changeAnimation( 3 );
-			break;
-		case Magic::ICE:
-			mDamage = 4 ;
-			changeAnimation( 0 );
-			break;
-		case Magic::ROCK:
-			mDamage	= 1 ;
-			changeAnimation( 6 );
-			break;
-	}
+	mState		= &Magic::stateCreateInit;
+	mSCreate	= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/effects/efeito3.wav"			, audiere::MULTIPLE );
+	mSDestroy	= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/effects/efeito1.wav"			, audiere::MULTIPLE );
 }
 
 void Magic::logic()
@@ -41,37 +27,79 @@ bool Magic::isActive() const
 	return mActive;
 }
 
-void Magic::stateCreate()
+void Magic::destroy()
 {
-	if( animationIsOver() )
+	if( mActive )
 	{
-		mState =  &Magic::stateStand;
-		switch( mType )
-		{
-			case Magic::ICE:	changeAnimation( 1 );	break;
-			case Magic::FIRE:	changeAnimation( 4 );	break;
-			case Magic::ROCK:	changeAnimation( 7 );	break;
-		}
+		printf("tchau1\n");
+		mState	= &Magic::stateDestroyInit;
+		mActive	= false;
 	}
 }
 
-void Magic::stateStand()
+void Magic::stateCreateInit()
 {
-	mCurrentAcceleration.x = (mDirection) ? 5 : -5;
-	/*
 	switch( mType )
 	{
-		case Magic::FIRE:	mCurrentAcceleration.x = (mDirection) ? 5 : -5;		break;
-		case Magic::ICE:	mCurrentAcceleration.x = (mDirection) ? 5 : -5;		break;
-		case Magic::ROCK:	mCurrentAcceleration.x = (mDirection) ? 5 : -5;		break;
-	}*/
+		case Magic::FIRE:
+			mDamage = 3 ;
+			changeAnimation( 3 );
+			break;
+		case Magic::ICE:
+			mDamage = 4 ;
+			changeAnimation( 0 );
+			break;
+		case Magic::ROCK:
+			mDamage	= 1 ;
+			changeAnimation( 6 );
+			break;
+	}
+	mSCreate->play();
+	mState =  &Magic::stateCreating;
 }
 
-void Magic::stateDestroy()
+void Magic::stateCreating()
+{
+	if( animationIsOver() )
+	{
+		mState =  &Magic::stateStandInit;
+	}
+}
+
+void Magic::stateStandInit()
+{
+	switch( mType )
+	{
+		case Magic::ICE:	changeAnimation( 1 );	break;
+		case Magic::FIRE:	changeAnimation( 4 );	break;
+		case Magic::ROCK:	changeAnimation( 7 );	break;
+	}
+	mState =  &Magic::stateStanding;
+}
+
+void Magic::stateStanding()
+{
+	mCurrentAcceleration.x = (mDirection) ? 5 : -5;
+}
+
+void Magic::stateDestroyInit()
+{
+	switch( mType )
+	{
+		case Magic::ICE:	changeAnimation( 3 );	break;
+		case Magic::FIRE:	changeAnimation( 6 );	break;
+		case Magic::ROCK:	changeAnimation( 8 );	break;
+	}
+	mSDestroy->play();
+	mState =  &Magic::stateDestroing;
+	mCurrentAcceleration.x = 0;
+	mCurrentAcceleration.y = 0;
+}
+
+void Magic::stateDestroing()
 {
 	if( animationIsOver() )
 	{
 		mNeedToDestroy = true;
 	}
 }
-

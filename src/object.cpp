@@ -85,19 +85,22 @@ bool Object::colide(const Object& pObject)
 
 void Object::draw(const Point& pPosition)
 {
-	Point position;
-	ALLEGRO_BITMAP* sprite = (*mSprites)[ mAnimation[mAnimationOn].mFrames[mFrameOn] ];
+	if( mAnimationOn < mAnimation.size() )
+	{
+		Point position;
+		ALLEGRO_BITMAP* sprite = (*mSprites)[ mAnimation[mAnimationOn].mFrames[mFrameOn] ];
 
-	position.x = mPosition.x + pPosition.x - (( mDirection == 0 ) ? mOffset.x : (al_get_bitmap_width(sprite) - mOffset.x) );
-	position.y = mPosition.y + pPosition.y - mOffset.y;
+		position.x = mPosition.x + pPosition.x - (( mDirection == 0 ) ? mOffset.x : (al_get_bitmap_width(sprite) - mOffset.x) );
+		position.y = mPosition.y + pPosition.y - mOffset.y;
 
-	al_draw_bitmap
-	(
-		sprite,
-		position.x,
-		position.y,
-		mDirection
-	);
+		al_draw_bitmap
+		(
+			sprite,
+			position.x,
+			position.y,
+			mDirection
+		);
+	}
 }
 
 void Object::logic()
@@ -106,15 +109,18 @@ void Object::logic()
 	mPosition.x += mCurrentAcceleration.x;
 	mPosition.y += mCurrentAcceleration.y;
 
-	++mTimeOn;
-	if( mTimeOn >= mAnimation[mAnimationOn].delay )
+	if(mAnimationOn < mAnimation.size() )
 	{
-		mTimeOn = 0;
-		++mFrameOn;
-		if( mFrameOn >= mAnimation[mAnimationOn].mFrames.size() )
+		++mTimeOn;
+		if( mTimeOn >= mAnimation[mAnimationOn].delay )
 		{
-			mFrameOn			= 0;
-			mAnimationIsOver	= true;
+			mTimeOn = 0;
+			++mFrameOn;
+			if( mFrameOn >= mAnimation[mAnimationOn].mFrames.size() )
+			{
+				mFrameOn			= 0;
+				mAnimationIsOver	= true;
+			}
 		}
 	}
 

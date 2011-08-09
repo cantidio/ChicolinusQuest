@@ -2,7 +2,7 @@ name				= "Wizard"
 direction			= 0						-- can be 0 or 1  - right or left I mean
 move_acceleration	= { 0.5, 15.0		}	-- x, y
 max_acceleration	= { 3.0, 5.0		}	-- x, y in absolute values
-offset				= { 33, 59			}	-- the offset
+offset				= { 33, 63			}	-- the offset
 collision			= { 20, 2, 44, 63	}	-- colision def
 sprites				= {
 	file	= "data/obj/enemy/wizard/wizard.png",	-- the image file
@@ -19,4 +19,3 @@ life		= 10
 lifeMax		= 10
 hunger		= 10
 hungerMax	= 99
-

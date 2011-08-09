@@ -5,7 +5,7 @@
 class Magic : public Object
 {
 	public:
-		enum Type
+		enum Type /**< Enum with the magic types*/
 		{
 			FIRE,
 			ICE,
@@ -13,17 +13,24 @@ class Magic : public Object
 			MAGIC_NUMBER
 		};
 		Magic(const Point& pPosition, const int& pDir, const Magic::Type& pType, BG* pBG);
-		void stateCreate();
-		void stateStand();
-		void stateDestroy();
+		virtual void logic();
+
 		int getDamage() const;
 		bool isActive() const;
-
-		virtual void logic();
+		void destroy();
 	protected:
-		bool mActive;
-		int mDamage;
-		Type mType;
-		void (Magic::*mState)();  /**<< pointer to the player state*/
+		audiere::SoundEffectPtr	mSCreate;
+		audiere::SoundEffectPtr	mSDestroy;
+		bool	mActive;
+		int		mDamage;
+		Type	mType;
+		void (Magic::*mState)();  /**<< pointer to the magic state*/
+
+		void stateCreateInit();
+		void stateCreating();
+		void stateStandInit();
+		void stateStanding();
+		void stateDestroyInit();
+		void stateDestroing();
 };
 #endif

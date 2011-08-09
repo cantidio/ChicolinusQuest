@@ -1,7 +1,7 @@
 #ifndef _GAME_
 #define _GAME_
 #include "include.hpp"
-#include "object.hpp"
+#include "enemy.hpp"
 #include "player.hpp"
 #include "magic.hpp"
 
@@ -15,11 +15,11 @@ class Game
 		ALLEGRO_DISPLAY*	mDisplay;
 
 		static std::vector<Player*>	mPlayers;
-		static std::vector<Object*>	mObjects;
+		static std::vector<Enemy*>	mEnemies;
 		static std::vector<Magic*>	mMagics;
 
 	public:
-		static void addObject(Object* pObject);
+		static void addEnemy(Enemy* pEnemy);
 		static void addPlayer(Player* pPlayer);
 		static void addMagic(Magic* pMagic);
 		static audiere::AudioDevicePtr getAudioDevice()

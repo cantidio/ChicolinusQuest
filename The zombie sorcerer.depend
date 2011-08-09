@@ -420,7 +420,7 @@
 1311873771 source:c:\users\cantidio\dropbox\workspace\wizard\src\collision_box.cpp
 	"collision_box.hpp"
 
-1312746715 source:c:\users\cantidio\dropbox\workspace\wizard\src\game.cpp
+1312863733 source:c:\users\cantidio\dropbox\workspace\wizard\src\game.cpp
 	"game.hpp"
 	"bg.hpp"
 	"sprite_manager.hpp"
@@ -428,17 +428,18 @@
 	"input.hpp"
 	"magic.hpp"
 	"hud.hpp"
+	"enemy_wizard.hpp"
 
-1312691495 c:\users\cantidio\dropbox\workspace\wizard\include\game.hpp
+1312859657 c:\users\cantidio\dropbox\workspace\wizard\include\game.hpp
 	"include.hpp"
-	"object.hpp"
+	"enemy.hpp"
 	"player.hpp"
 	"magic.hpp"
 
-1312853600 c:\users\cantidio\dropbox\workspace\wizard\include\player.hpp
+1312857461 c:\users\cantidio\dropbox\workspace\wizard\include\player.hpp
 	"actor.hpp"
 
-1312509064 c:\users\cantidio\dropbox\workspace\wizard\include\magic.hpp
+1312860168 c:\users\cantidio\dropbox\workspace\wizard\include\magic.hpp
 	"object.hpp"
 
 1312135926 c:\users\cantidio\dropbox\workspace\wizard\include\sprite_manager.hpp
@@ -466,20 +467,21 @@
 1311387284 source:c:\users\cantidio\dropbox\workspace\wizard\src\lua_return.cpp
 	"lua_return.hpp"
 
-1312509039 source:c:\users\cantidio\dropbox\workspace\wizard\src\magic.cpp
+1312863870 source:c:\users\cantidio\dropbox\workspace\wizard\src\magic.cpp
 	"magic.hpp"
+	"game.hpp"
 
 1312513080 source:c:\users\cantidio\dropbox\workspace\wizard\src\main.cpp
 	"game.hpp"
 
-1312508866 source:c:\users\cantidio\dropbox\workspace\wizard\src\object.cpp
+1312858111 source:c:\users\cantidio\dropbox\workspace\wizard\src\object.cpp
 	"object.hpp"
 	"lua.hpp"
 	"sprite_manager.hpp"
 	"animation_manager.hpp"
 	"bg.hpp"
 
-1312853217 source:c:\users\cantidio\dropbox\workspace\wizard\src\player.cpp
+1312857494 source:c:\users\cantidio\dropbox\workspace\wizard\src\player.cpp
 	"player.hpp"
 	"lua.hpp"
 	"input.hpp"
@@ -500,7 +502,7 @@
 1312750614 source:c:\users\cantidio\dropbox\workspace\wizard\src\enemy.cpp
 	"enemy.hpp"
 
-1312750645 c:\users\cantidio\dropbox\workspace\wizard\include\enemy.hpp
+1312861801 c:\users\cantidio\dropbox\workspace\wizard\include\enemy.hpp
 	"actor.hpp"
 
 1312694169 source:c:\users\cantidio\dropbox\workspace\wizard\src\hud.cpp
@@ -510,10 +512,16 @@
 
 1312694060 c:\users\cantidio\dropbox\workspace\wizard\include\hud.hpp
 
-1312750342 c:\users\cantidio\dropbox\workspace\wizard\include\actor.hpp
+1312855872 c:\users\cantidio\dropbox\workspace\wizard\include\actor.hpp
 	"object.hpp"
 
 1312750322 source:c:\users\cantidio\dropbox\workspace\wizard\src\actor.cpp
 	"actor.hpp"
 	"lua.hpp"
+
+1312863042 source:c:\users\cantidio\dropbox\workspace\wizard\src\enemy_wizard.cpp
+	"enemy_wizard.hpp"
+
+1312863972 c:\users\cantidio\dropbox\workspace\wizard\include\enemy_wizard.hpp
+	"enemy.hpp"
 

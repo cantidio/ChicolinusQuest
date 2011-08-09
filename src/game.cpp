@@ -5,8 +5,9 @@
 #include "input.hpp"
 #include "magic.hpp"
 #include "hud.hpp"
+#include "enemy_wizard.hpp"
 
-std::vector<Object*>	Game::mObjects;
+std::vector<Enemy*>		Game::mEnemies;
 std::vector<Player*>	Game::mPlayers;
 std::vector<Magic*>		Game::mMagics;
 audiere::AudioDevicePtr	Game::mAudioDevice;
@@ -24,10 +25,10 @@ Game::~Game()
 {
 	printf("game off...\n");
 
-	for(int i = 0; i < mObjects.size(); ++i)
+	/*for(int i = 0; i < mEnemies.size(); ++i)
 	{
 		delete mObjects[i];
-	}
+	}*/
 	if(mDisplay != NULL)
 	{
 		al_destroy_display(mDisplay);
@@ -46,9 +47,9 @@ void Game::addMagic(Magic* pMagic)
 	mMagics.push_back( pMagic );
 }
 
-void Game::addObject(Object* pObject)
+void Game::addEnemy(Enemy* pEnemy)
 {
-	mObjects.push_back( pObject );
+	mEnemies.push_back( pEnemy );
 }
 
 int Game::run()
@@ -98,9 +99,12 @@ bool Game::stateDisclaimer()
 {
 	BG bg("data/bg/bg1/bg1.lua");
 	Player* player = new Player ( Point( 0, 230 ), &bg );
+	EnemyWizard* wizard = new EnemyWizard( Point( 250, 230 ), &bg );
 	HUD hud(player->getLifeMax(), 0.4f );
 	addPlayer( player );
+	addEnemy( wizard );
 	bg.getLayer(3)->addObject(player);
+	bg.getLayer(3)->addObject(wizard);
 	bg.setCameraTarget(player);
 
 	Magic *a = new Magic(Point( 0, 230 ) , 1, Magic::FIRE, NULL);
@@ -111,21 +115,43 @@ bool Game::stateDisclaimer()
 	{
 		Input::get().update();
 		al_clear_to_color( al_map_rgb( 0, 0, 0 ) );
-
-		bg.draw();
+		printf("numero de magias em cena: %d \n",mMagics.size() );
 		bg.logic();
+		bg.draw();
 		for( int i = 0; i < mMagics.size(); ++i )
 		{
-			mMagics[i]->draw(Point( -bg.getPosition().x, -bg.getPosition().y ) );
 			mMagics[i]->logic();
+			if( mMagics[i]->needToDestroy() )
+			{
+				printf("tchau\n");
+				delete mMagics[i];
+				mMagics.erase(mMagics.begin() + i);
+				continue;
+			}
+			mMagics[i]->draw(Point( -bg.getPosition().x, -bg.getPosition().y ) );
 		}
 		hud.setLife( player->getLife() );
 		hud.logic();
 		hud.draw( Point(10, 10) );
+		for( int i = 0; i < mEnemies.size(); ++i)
+		{
+			for(int j = 0; j < mMagics.size(); ++j)
+			{
+				if( mMagics[j]->isActive() && mMagics[j]->colide( *mEnemies[i] ) )
+				{
+					mMagics[j]->destroy();
+					mEnemies[i]->hurt( 1.0f );
+					printf("colidiu com o mago safado!\n");
+				}
+			}
+			/*if( player->colide( *mEnemies[i] ))
+			{
 
+			}*/
+		}
 	/*	if(a.colide(b))
 		{
-			printf("colidiu com o mago safado!\n");
+
 		}
 */
 //b.logic();
