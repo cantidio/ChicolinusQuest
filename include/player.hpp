@@ -1,23 +1,31 @@
 #ifndef _PLAYER_
 #define _PLAYER_
-#include "object.hpp"
+#include "actor.hpp"
 
-class Player : public Object
+class Player : public Actor
 {
     protected:
+		audiere::SoundEffectPtr	mSFire;
+		audiere::SoundEffectPtr	mSSpecial;
+		audiere::SoundEffectPtr	mSHurt;
+		audiere::SoundEffectPtr	mSDying;
+		audiere::SoundEffectPtr	mSJumping;
+		audiere::SoundEffectPtr	mSMagic;
+		audiere::SoundEffectPtr	mSSteps;
+		audiere::SoundEffectPtr	mSLand;
+
 		int mLevel;
 		int mLevelMax;
-		int mLife;
-		int mLifeMax;
-		int mHunger;
-		int mHungerMax;
+
+		float mHunger;
+		float mHungerMax;
 		bool mCanShot;
 		void (Player::*mState)();  /**<< pointer to the player state*/
     public:
 		Player(const Point& pPosition, BG* pBG);
 		~Player();
 		bool move();
-		bool isDead() const;
+
 		virtual void logic();
 		//---------------------------STATES--------------------------------
 		void stateStandInit();			void stateStanding();
@@ -30,6 +38,8 @@ class Player : public Object
 		void stateHurtInAirInit();		void stateHurtingInAir();
 		void stateDieInit();			void stateDying();
 		//---------------------------STATES--------------------------------
+
+		void hurt(const float& pDamage);
 };
 #endif
 

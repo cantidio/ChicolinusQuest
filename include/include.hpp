@@ -5,8 +5,7 @@
 #include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
-#include <allegro5/allegro_audio.h>
-#include <allegro5/allegro_acodec.h>
+#include <audiere.h>
 #include <vector>
 #include <string>
 #endif

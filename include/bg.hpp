@@ -8,17 +8,20 @@ struct ALLEGRO_SAMPLE;
 class BG
 {
 	protected:
-		std::vector<BGLayer*>	mLayers;
-		ALLEGRO_SAMPLE*			mMusic;
-		ALLEGRO_SAMPLE_INSTANCE* mMusicInstance;
-		Collision				mCollisionBox;
-		std::string				mName;
-		int						mWidth;
-		int						mHeight;
-		int						mPlayerLayer;
-		Object*					mCameraTarget;
+		std::vector<BGLayer*>		mLayers;
+		audiere::OutputStreamPtr	mMusic;
+		Collision					mCollisionBox;
+		std::string					mName;
+		int							mWidth;
+		int							mHeight;
+		int							mPlayerLayer;
+		Object*						mCameraTarget;
+		Point						mPosition;
 	public:
-		Point					mPosition;
+		inline Point getPosition() const
+		{
+			return mPosition;
+		}
 		BG(const std::string& pScript);
 		~BG();
 		void draw() const;
@@ -26,4 +29,4 @@ class BG
 		BGLayer* getLayer(const unsigned int& pLayer);
 		void setCameraTarget(Object* pObject);
 };
-#endif	
+#endif

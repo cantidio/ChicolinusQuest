@@ -9,28 +9,33 @@
 using namespace Gorgon::Script;
 
 Player::Player(const Point& pPosition, BG* pBG) :
-	Object(pPosition, "data/obj/player/Chicus/chicus.lua", pBG)
+	Actor(pPosition, "data/obj/player/Chicus/chicus.lua", pBG)
 {
 	Lua lua("data/obj/player/Chicus/chicus.lua");
 	mLevel 		= lua.getNumericVar("level");
 	mLevelMax	= lua.getNumericVar("levelMax");
-	mLife		= lua.getNumericVar("life");
-	mLifeMax	= lua.getNumericVar("lifeMax");
 	mHunger		= lua.getNumericVar("hunger");
 	mHungerMax	= lua.getNumericVar("hungerMax");
 
+	mSSteps		= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/effects/passo1.wav"			, audiere::MULTIPLE );
+	mSLand		= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/effects/efeito2.wav"			, audiere::MULTIPLE );
+	mSMagic		= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/effects/efeito3.wav"			, audiere::MULTIPLE );
+	mSFire		= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/player/chicus/atacando.wav"	, audiere::MULTIPLE );
+	mSSpecial	= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/player/chicus/especial.wav"	, audiere::MULTIPLE );
+	mSJumping	= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/player/chicus/pulando.wav"	, audiere::MULTIPLE );
+	mSDying		= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/player/chicus/morrendo.wav"	, audiere::MULTIPLE );
+	mSHurt		= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/player/chicus/dano.wav"		, audiere::MULTIPLE );
+
+	mSLand->setVolume		( 0.3 );
+	mSFire->setVolume		( 0.5 );
+	mSSpecial->setVolume	( 0.5 );
+	mSJumping->setVolume	( 0.5 );
+	mSDying->setVolume		( 5.5 );
+	mSHurt->setVolume		( 0.3 );
 	mState = &Player::stateStandInit;
 }
 
-Player::~Player()
-{
-	printf("bye\n");
-}
-
-bool Player::isDead() const
-{
-	return (mLife <= 0 );
-}
+Player::~Player(){}
 
 void Player::logic()
 {
@@ -48,11 +53,6 @@ bool Player::move()
 			mCurrentAcceleration.x = -mMaxAcceleration.x ;
 		}
 		mDirection = 1;
-		/*if(mBG != NULL && mPosition.x < 160)
-		{
-			mBG->mPosition.x = mBG->mPosition.x - (160 - mPosition.x);
-			mPosition.x = 160;
-		}*/
 	}
 	else if( Input::get().buttonRight() )
 	{
@@ -62,12 +62,6 @@ bool Player::move()
 			mCurrentAcceleration.x = mMaxAcceleration.x ;
 		}
 		mDirection = 0;
-
-	/*	if(mBG != NULL && mPosition.x > 160)
-		{
-			mBG->mPosition.x = mBG->mPosition.x + (mPosition.x - 160);
-			mPosition.x = 160;
-		}*/
 	}
 	else
 	{
@@ -133,7 +127,14 @@ void Player::stateWalking()
 	{
 		mState = &Player::stateJumpInit;
 	}
-	else if( !move() )
+	else if( move() )
+	{
+		if( ( mFrameOn == 1 || mFrameOn == 5 ) && mTimeOn == 0 )
+		{
+			mSSteps->play();
+		}
+	}
+	else
 	{
 		mState = &Player::stateStandInit;
 	}
@@ -145,12 +146,15 @@ void Player::stateShotInit()
 	changeAnimation( 2 );
 	mState		= &Player::stateShotting;
 	mCanShot	= true;
+	mSFire->play();
 }
 
 void Player::stateShotting()
 {
 	if(mFrameOn == 3 && mCanShot)
 	{
+
+		mSMagic->play();
 		mCanShot = false;
 		printf("shot\n");
 		if(mDirection == 0)
@@ -177,6 +181,7 @@ void Player::stateSpecialShotInit()
 	printf("player-state: special shot\n");
 	changeAnimation( 3 );
 	mState = &Player::stateSpecialShotting;
+	mSSpecial->play();
 }
 
 void Player::stateSpecialShotting()
@@ -191,6 +196,7 @@ void Player::stateSpecialShotting()
 	    {
             if(mCanShot)
             {
+            	mSMagic->play();
                 mCanShot = false;
                 printf("shot\n");
                 double y = sin(mFrameOn)* 5;
@@ -225,6 +231,8 @@ void Player::stateJumpInit()
 		mState = &Player::stateJumping;
 		changeAnimation( 5 );
 		mCurrentAcceleration.y = -7;
+
+		mSJumping->play();
 	}
 }
 
@@ -238,6 +246,10 @@ void Player::stateJumping()
 	else if( mCurrentAcceleration.y == 0 )
 	{
 		mState = &Player::stateFallInit;
+	}
+	else if( Input::get().button1() ) //shot
+	{
+		mState		= &Player::stateShotInit;
 	}
 }
 
@@ -262,6 +274,7 @@ void Player::stateFalling()
 	}
 	if(mPosition.y >= 230)//to no chão manolo
 	{
+		mSLand->play();
 		mPosition.y = 230;
 		mCurrentAcceleration.y = 0;
 		mState = &Player::stateStandInit;
@@ -273,6 +286,7 @@ void Player::stateHurtStandInit()
 	printf("player-state: hurtStand\n");
 	changeAnimation( 7 );
 	mState = &Player::stateHurtingStand;
+	mSHurt->play();
 }
 
 void Player::stateHurtingStand()
@@ -288,12 +302,14 @@ void Player::stateHurtInAirInit()
 	printf("player-state: hurtInAir\n");
 	changeAnimation( 8 );
 	mState = &Player::stateHurtingInAir;
+	mSHurt->play();
 }
 
 void Player::stateHurtingInAir()
 {
 	if(animationIsOver())
 	{
+		printf("fal\n");
 		mState = &Player::stateFallInit;
 	}
 }
@@ -302,12 +318,44 @@ void Player::stateDieInit()
 {
 	printf("player-state: die\n");
 	changeAnimation( 9 );
+	mState = &Player::stateDying;
+	mSDying->play();
 }
 
 void Player::stateDying()
 {
-	if(animationIsOver())
+	if( animationIsOver() )
 	{
 		changeAnimation( 10 );
+	}
+}
+
+void Player::hurt(const float& pDamage)
+{
+	mLife  -= pDamage;
+	if
+	(
+		mState != &Player::stateHurtInAirInit
+		&& mState != &Player::stateHurtingInAir
+		&& mState != &Player::stateHurtStandInit
+		&& mState != &Player::stateHurtingStand
+	)
+	{
+		if
+		(
+			mState == &Player::stateFalling			||
+			mState == &Player::stateFallInit		||
+			mState == &Player::stateJumping			||
+			mState == &Player::stateJumpInit		||
+			mState == &Player::stateHurtInAirInit	||
+			mState == &Player::stateHurtingInAir
+		)
+		{
+			mState = &Player::stateHurtInAirInit;
+		}
+		else
+		{
+			mState = &Player::stateHurtStandInit;
+		}
 	}
 }

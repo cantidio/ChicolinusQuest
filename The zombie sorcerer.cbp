@@ -29,9 +29,8 @@
 			<Add option="-lallegro_image" />
 			<Add option="-lallegro_primitives" />
 			<Add option="-lallegro_memfile" />
-			<Add option="-lallegro_audio" />
-			<Add option="-lallegro_acodec" />
 			<Add option="-llua5.1" />
+			<Add option="-laudiere" />
 		</Linker>
 		<Unit filename="data\bg\teste\layer0.lua" />
 		<Unit filename="data\bg\teste\teste.lua" />
@@ -41,6 +40,7 @@
 		<Unit filename="data\obj\enemy\wizard\wizard.lua" />
 		<Unit filename="data\obj\player\Chicus\animation.lua" />
 		<Unit filename="data\obj\player\Chicus\chicus.lua" />
+		<Unit filename="include\actor.hpp" />
 		<Unit filename="include\animation_manager.hpp" />
 		<Unit filename="include\animationpack.hpp" />
 		<Unit filename="include\bg.hpp" />
@@ -48,6 +48,7 @@
 		<Unit filename="include\collision_box.hpp" />
 		<Unit filename="include\enemy.hpp" />
 		<Unit filename="include\game.hpp" />
+		<Unit filename="include\hud.hpp" />
 		<Unit filename="include\include.hpp" />
 		<Unit filename="include\input.hpp" />
 		<Unit filename="include\lua.hpp" />
@@ -61,6 +62,7 @@
 		<Unit filename="include\script.hpp" />
 		<Unit filename="include\sprite_manager.hpp" />
 		<Unit filename="include\spritepack.hpp" />
+		<Unit filename="src\actor.cpp" />
 		<Unit filename="src\animation_manager.cpp" />
 		<Unit filename="src\animationpack.cpp" />
 		<Unit filename="src\bg.cpp" />
@@ -68,6 +70,7 @@
 		<Unit filename="src\collision_box.cpp" />
 		<Unit filename="src\enemy.cpp" />
 		<Unit filename="src\game.cpp" />
+		<Unit filename="src\hud.cpp" />
 		<Unit filename="src\input.cpp" />
 		<Unit filename="src\lua.cpp" />
 		<Unit filename="src\lua_argument.cpp" />
