@@ -23,6 +23,7 @@ class Magic : public Object
 		audiere::SoundEffectPtr	mSDestroy;
 		bool	mActive;
 		int		mDamage;
+		float	mDuration;
 		Type	mType;
 		void (Magic::*mState)();  /**<< pointer to the magic state*/
 

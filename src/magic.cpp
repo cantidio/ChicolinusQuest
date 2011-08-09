@@ -9,6 +9,7 @@ Magic::Magic(const Point& pPosition, const int& pDir, const Magic::Type& pType, 
 	mState		= &Magic::stateCreateInit;
 	mSCreate	= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/effects/efeito3.wav"			, audiere::MULTIPLE );
 	mSDestroy	= audiere::OpenSoundEffect( Game::getAudioDevice(), "data/obj/effects/efeito1.wav"			, audiere::MULTIPLE );
+	mDuration	= 60;
 }
 
 void Magic::logic()
@@ -80,6 +81,11 @@ void Magic::stateStandInit()
 void Magic::stateStanding()
 {
 	mCurrentAcceleration.x = (mDirection) ? 5 : -5;
+	--mDuration;
+	if(mDuration <= 0)
+	{
+		destroy();
+	}
 }
 
 void Magic::stateDestroyInit()
